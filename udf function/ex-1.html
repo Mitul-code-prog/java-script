@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // finding lcm of two number
+        function lcm(a,b){
+            let x=a,y=b;
+            while(x!=y){
+                if(x<y){
+                    x+=a;
+                }else{
+                    y+=b;
+                }
+            }
+            console.log(`LCM is:- ${x}`);
+            
+        }
+        let lcM=lcm(3,20);
+        console.log(lcM);
+        
+        
+        
+    </script>
+</body>
+</html>
