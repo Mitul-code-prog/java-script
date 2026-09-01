@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let list = [];
+      let total = 0;
+      while (true) {
+        console.log("Welcome to expense tracker");
+        console.log("====MENU====");
+        console.log("Choice:-1 to Add expenses");
+        console.log("Choice:-2 to view expenses");
+        console.log("Choice:-3 to view total spending");
+        console.log("Choice:-4 to exit");
+
+        let ch = Number(prompt("Enter your choice"));
+        if (ch === 1) {
+          let date = prompt("Enter the date");
+          let category = prompt("Enter the category");
+          let description = prompt("Enter the description");
+          let sum = Number(prompt("Enter the spending amount"));
+          list.push([date, category, description, sum]);
+          total = sum + total;
+        } else if (ch == 2) {
+          if (list.length == 0) {
+            console.log("Enter the expense first");
+          } else {
+            for (let i of list) {
+              console.log(
+                `Date:-${i[0]} | category:-${i[1]} | Description:-${i[2]} |  Spending is:-${i[3]}`,
+              );
+            }
+          }
+        } else if (ch == 3) {
+          console.log(total);
+        } else if (ch == 4) {
+          console.log("Thankyou for using our program");
+          break;
+        } else {
+          alert("Enter the valid choice");
+        }
+      }
+    </script>
+  </body>
+</html>
