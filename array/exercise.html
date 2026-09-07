@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. counting no of even and odd no from array
+
+        // let num=[10,2,4,7,50,30,77,88,99,23];
+        // let countEven=0;
+        // let countOdd=0;
+        // for(i of num){
+        //     if(i%2==0){
+        //         countEven+=1;
+        //     }else{
+        //         countOdd+=1;
+        //     }
+        // }
+        // console.log(`There are ${countEven} even number`);
+        // console.log(`There are ${countOdd} odd number`);
+        
+        // 2. finding max number
+        // let num=[10,2,4,7,50,30,77,88,99,23];
+        // let ans=num.sort((function(a,b){
+        //     console.log(`a ${a}`);
+        //     console.log(`b ${b}`);
+            
+            
+        // }))       
+
+        // 3. finding duplicates
+
+        // let num=[1,2,11,1,3,2];
+        
+        
+        // let ans=num.filter((function(value,index){
+        //    return num.indexOf(value)!=index;
+        // }))
+        // console.log(ans);
+
+        // 4. printing an elements of an array
+        // let num=[10,20,5,67,89,6,78,9];
+        // for(let i of num){
+        //     console.log(i);
+            
+        // }
+
+        // 5. finding sum of all elements
+        // let num=[1,2,3,4,5];
+        // sum=0
+        // for(let i of num){
+        //     sum+=i;
+            
+            
+        // }
+        // console.log(sum);
+
+        // 6. finding the avg of num
+        //  let ans=function(num){
+        //     let sum=0;
+        //     for( let i of num){
+        //         sum+=i;
+        //     }
+        //     return (sum/num.length)
+        //  }
+        //  console.log(ans([1,2,3,4,5,6]));
+
+        // 7. finding index of first and last element
+        // let fruits=["apple","banana","kiwi","pineapple"];
+        // console.log(`Index of last element is:- ${fruits.length-1}`);
+        // console.log(`Index of first element is:- ${(fruits.length-1)-(fruits.length-1)}`);
+
+        // 8. finding sum of elements occuring at even indexs
+        // let ans=function(arr){
+        //     let sum=0;
+        //     for(let i=0;i<arr.length;i++){
+        //         if(i%2==0 && i!=0){
+        //             sum+=arr[i];
+        //         }
+        //     }
+        //     return sum;
+        // }
+        // console.log(ans([10,2,3,4,5,6,7,8]));
+
+        // 9. finding max of array
+        // let ans=function(arr){
+        //     let max=arr[0];
+        //     for(let i=1;i<arr.length;i++){
+        //         if(arr[i]>max){
+        //             max=arr[i];
+        //         }
+        //     }
+        //     return (`Maxis:- ${max}`);
+        // }
+        // console.log(ans([10,20,30,80,45,20,10]));
+
+        // 10. find min of array
+
+        // let ans=function(arr){
+        //     let min=arr[0];
+        //     for(let i=1;i<arr.length;i++){
+        //         if(arr[i]<min){
+        //             min=arr[i];
+        //         }
+        //     }
+        //     return (`Minis:- ${min}`);
+        // }
+        // console.log(ans([10,20,30,8,45,20,11]));
+
+        // 11. finding second maximum element
+
+        let ans=function(arr){
+            let max=arr[0];
+            for(let i=1;i<arr.length;i++){
+                if(arr[i]>max){
+                    max=arr[i];
+                }
+            }
+            let secondMax=-Infinity;
+            for(let j=1;j<arr.length;j++){
+                if(arr[j]!=max && arr[j]>secondMax){
+                    secondMax=arr[j];
+                }
+            }
+            return secondMax;
+        }
+        console.log(ans([56,2,3,44,55]));
+
+        // 12. finding second minimum
+        
+
+        // let ans=function(arr){
+        //     let min=arr[0];
+        //     for(let i=1;i<arr.length;i++){
+        //         if(arr[i]<min){
+        //             min=arr[i];
+        //         }
+        //     }
+        //     console.log(`hii ${min}`);
+            
+        //     let secondMin=Infinity;
+        //     for(let j=1;j<arr.length;j++){
+        //         if(arr[j]!==min && arr[j]<secondMin){
+        //             secondMin=arr[j];
+        //         }
+        //     }
+        //     return secondMin;
+        // }
+        // console.log(ans([1,2,3,44,55]));
+        
+
+
+        
+        
+        
+        
+        
+         
+
+        
+    </script>
+</body>
+</html>
