@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Bank{
+            constructor(uname,balance){
+                this.name=uname;
+                this.balance=balance;
+            }
+            depo(amt){
+                this.balance+=amt;
+                console.log(`Your amount ${amt} has sucessfully added to your account ${this.name}!!`);
+                
+            }
+            withdraw(amt){
+                this.balance-=amt;
+                console.log(`Your amount ${amt} has been sucessfully withdrawed from your account ${this.name}!!`);
+
+            }
+            checkBalance(){
+                console.log(`Your Account balance is ${this.balance}`);
+                
+            }
+        }
+        let bank=new Bank("Mitul",5000);
+        bank.depo(200);
+        bank.depo(10000);
+        bank.checkBalance();
+        bank.withdraw(4000);
+        bank.checkBalance();
+
+
+    
+    </script>
+</body>
+</html>
