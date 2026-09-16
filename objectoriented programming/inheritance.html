@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // it simply merges two classes
+        // class Students{
+        //     name(a){
+        //         // console.log(`The name of the student is:- ${a}`);
+                
+        //     }
+        // }
+        // class Fees extends Students{
+            
+
+        //     fees(a,b){
+        //         super.name(a);
+        //         console.log(`Name is ${a} and Has paid the amount ${b} sucessfully!!`);
+                
+        //     }
+        // }
+        // let st=new Fees();
+        // st.fees("Mitul",8000);
+
+        // another method
+        class Student {
+            constructor(name){
+                this.name=name;
+            }
+            displayName(){
+                console.log(`Name is:- ${this.name}`);
+                
+            }
+        }
+        class Fees extends Student{
+            constructor(name,amount){
+                super(name);
+                this.amount=amount;
+            }
+            displayAmmount(){
+                super.displayName();
+                console.log(`Has paid the amount ${this.amount} sucessfully!!`);
+                
+            }
+        }
+        let st=new Fees("mitul",5000);
+        st.displayAmmount();
+        
+       
+
+
+       
+    </script>
+</body>
+</html>
