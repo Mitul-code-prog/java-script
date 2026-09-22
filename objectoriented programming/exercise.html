@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class University {
+            constructor(name){
+                this.name=name;
+                this.department=[];
+            }
+            addDepartment(dept){
+                this.department.push(dept);
+                console.log("Department added sucessfully");
+                
+            }
+            removeDepartment(dept){
+                if(this.department.includes(dept)){
+                    this.department.splice(this.department.indexOf(dept),1);
+                    console.log("Department removed sucessfully!");
+                    
+                }
+            }
+            viewDept(){
+                for( let i of this.department){
+                    console.log(i);
+                    
+                }
+            }
+        }
+        let obj=new University("GTU")
+        obj.addDepartment("Chemical");
+        obj.addDepartment("Civil");
+        obj.addDepartment("Mechanical");
+        obj.addDepartment("Electrical");
+        obj.viewDept();
+        obj.removeDepartment("Civil");
+        obj.viewDept();
+
+
+    </script>
+</body>
+</html>
