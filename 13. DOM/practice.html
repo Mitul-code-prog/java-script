@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- get elements by id -->
+    <!-- <p id="msg"></p> -->
+     <!-- get elements by class and query selector -->
+      <!-- <p class="class" onclick="method()">HTML</p>
+      <p class="class">CSS</p>
+      <p class="class">JS</p> -->
+      <!-- <p id="msg">Hello</p> -->
+       <!-- <div id="color" >hello</div>
+       <hr>
+       <button onclick="blick()">Click</button> -->
+       <div id="parent">hello</div>
+
+
+    <script>
+        // get elements by id
+        // let p=document.getElementById('msg');
+        // p.innerHTML="Hello";
+        // p.style.color="red";
+        // p.style.fontSize="34px"
+
+        //get elements by class
+    //    let c=document.getElementsByClassName('class');
+    //     let method=()=>{
+    //             c[0].innerHTML="JS";
+    //             c[0].style.color="blue";
+        
+    //     }
+    //     for(let i=0;i<c.length;i++){
+    //         if(c[i].innerHTML.includes("HTML")){
+    //             c[i].style.color="red";
+    //         }else{
+    //             c[i].style.color="blue"
+    //         }
+    //     }
+    // get element by query selector
+//     let c=document.querySelector(".class");
+//    console.log(c.innerHTML);
+// let c=document.querySelectorAll(".class");
+// for(let i of c){
+//     console.log(i.innerHTML);
+    
+// }    // changing the iner element
+        // let p=document.getElementById('msg');
+        // p.innerHTML="Hii";
+        
+        // c.style.backgroundColor="red";
+    //    function blick(){
+    //         let c=document.getElementById('color');
+    //         c.style.backgroundColor="red";
+    //    }
+    // create element
+    let c=document.createElement("p");
+    c.innerHTML="hello";
+    let p=document.getElementById("parent");
+    p.appendChild(c);
+    p.remove();
+
+
+    
+   
+   
+       
+        
+
+
+    </script>
+</body>
+</html>
