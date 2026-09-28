@@ -9,7 +9,7 @@
     <input type="text" placeholder="Enter city name" id="in-field">
     <br>
     <button onclick="add()">Add</button>
-    <button onclick="dlt()">Delete</button>
+    <button onclick="dlt()">DeleteAll</button>
     <ul id="list"></ul>
     <script>
        
@@ -22,6 +22,7 @@
             }
             let ulist=document.getElementById('list');
             let sublist=document.createElement("li");
+           sublist.setAttribute('class','dltm')
             ulist.appendChild(sublist);
             sublist.innerHTML=city;
             alert("item added");
@@ -29,7 +30,10 @@
             document.getElementById("in-field").value="";
         }
         let dlt=()=>{
-            document.getElementById("list").remove();
+            let d=document.querySelectorAll(".dltm");
+            for(j of d){
+                j.remove();
+            }
         }
 
 
