@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+        <input type="text" id="name" placeholder="Enter the name">
+        <input type="number" id="age" placeholder="Enter your age">
+        <button onclick="add()">Add</button>
+       
+    </div>
+    <br>
+    <br>
+    <table border="black" width="50%" align="center" id="table">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </table>
+    <script>
+        
+        let add=()=>{
+            let table=document.getElementById("table");
+            let in_name=document.getElementById("name").value;
+            let age=document.getElementById("age").value;
+            let tr=document.createElement("tr");
+            table.appendChild(tr);
+            let td1=document.createElement("td");
+            tr.appendChild(td1);
+            td1.innerHTML=in_name;
+            document.getElementById("name").value=""
+            let td2=document.createElement("td");
+            tr.appendChild(td2);
+            td2.innerHTML=age;
+             document.getElementById("age").value=""
+            
+            
+
+        }
+        
+
+    </script>
+</body>
+</html>
