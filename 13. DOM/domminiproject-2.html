@@ -10,6 +10,7 @@
         <input type="text" id="name" placeholder="Enter the name">
         <input type="number" id="age" placeholder="Enter your age">
         <button onclick="add()">Add</button>
+        <button  id="view">View</button>
        
     </div>
     <br>
@@ -28,14 +29,27 @@
             let age=document.getElementById("age").value;
             let tr=document.createElement("tr");
             table.appendChild(tr);
+            tr.addEventListener("dblclick",()=>{
+                tr.remove();
+                alert("removed");
+            })
             let td1=document.createElement("td");
-            tr.appendChild(td1);
-            td1.innerHTML=in_name;
-            document.getElementById("name").value=""
+            
             let td2=document.createElement("td");
-            tr.appendChild(td2);
-            td2.innerHTML=age;
-             document.getElementById("age").value=""
+            
+            alert("Added!!")
+            let view=document.getElementById("view");
+            view.addEventListener("click",()=>{
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                td1.innerHTML=in_name;
+                document.getElementById("name").value=""
+                td2.innerHTML=age;
+                document.getElementById("age").value=""
+            })
+          
+
+           
             
             
 

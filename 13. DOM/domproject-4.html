@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-width: 50%;
+            min-height: 100px;
+            box-shadow: 0px 0px 3px black;
+            background-color: white;
+            padding: 10px;
+            border-radius: 30px;
+            
+            button{
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body id="bg">
+    <div class="box">
+        <h1 id="Head_color">Background color is:-</h1>
+        <button onclick="change()">Change</button>
+    </div>
+    <script>
+        let colorcode="ABCDEF0123456789";
+        function generatecolor(){
+            let hash="#";
+            for(let i=1;i<=6;i++){
+                let randomIndex=Math.floor(Math.random()*colorcode.length);
+                hash+=colorcode[randomIndex];
+            }
+            return hash;
+        }
+        function updateTag(color){
+            let body=document.getElementById("bg");
+            let title=document.getElementById("Head_color");
+            body.style.backgroundColor=color;
+            title.innerHTML=`BackgroundColor is:- ${color}`;
+        }
+        let change=()=>{
+            let newColor=generatecolor();
+            updateTag(newColor);
+        }
+    </script>
+</body>
+</html>
