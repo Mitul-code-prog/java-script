@@ -10,7 +10,6 @@
         <input type="text" id="name" placeholder="Enter the name">
         <input type="number" id="age" placeholder="Enter your age">
         <button onclick="add()">Add</button>
-        <button  id="view">View</button>
        
     </div>
     <br>
@@ -23,37 +22,39 @@
     </table>
     <script>
         
-        let add=()=>{
-            let table=document.getElementById("table");
-            let in_name=document.getElementById("name").value;
-            let age=document.getElementById("age").value;
-            let tr=document.createElement("tr");
-            table.appendChild(tr);
-            tr.addEventListener("dblclick",()=>{
-                tr.remove();
-                alert("removed");
-            })
-            let td1=document.createElement("td");
-            
-            let td2=document.createElement("td");
-            
-            alert("Added!!")
-            let view=document.getElementById("view");
-            view.addEventListener("click",()=>{
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                td1.innerHTML=in_name;
-                document.getElementById("name").value=""
-                td2.innerHTML=age;
-                document.getElementById("age").value=""
-            })
-          
+       let root=document.getElementById("table");
+       
 
+       function generateElement(){
+            let addRow=document.createElement("tr");
+            let addCol1=document.createElement("td");
+            let addCol2=document.createElement("td");
+            return {addRow,addCol1,addCol2};
+       }
+
+       let add=()=>{
+            let inputName=document.getElementById("name").value;
+            let inputAge=document.getElementById("age").value;
+            if(inputName==="" || inputAge===""){
+                alert("add both")
+                return false;
+            }
+            let {addRow,addCol1,addCol2} =generateElement();
+            addCol1.innerText=inputName;
+            addCol2.innerText=inputAge;
            
-            
-            
+            addRow.addEventListener("dblclick",()=>{
+                addRow.remove();
+            })
+            addRow.appendChild(addCol1);
+            addRow.appendChild(addCol2);
+             root.appendChild(addRow);
+            alert("added!!");
 
-        }
+            
+       }
+      
+
         
 
     </script>
