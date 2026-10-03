@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Form validation</h1>
+        <form >
+            <p>
+                <label for="name">Name:-</label>
+                <input type="text" id="name">
+                <span id="errorname"></span>
+            </p>
+            <p>
+                <input type="submit" value="Submit" onclick="msubmit()">
+            </p>
+        </form>
+    </div>
+    <script>
+          let sname=document.getElementById("name").value;
+        let msubmit=()=>{
+           let Errorname=document.getElementById("errorname");
+            if(sname===""){
+               
+                Errorname.innerText="Name is Required";
+                // Errorname.style.color="red";
+            }
+        }
+    </script>
+</body>
+</html>
