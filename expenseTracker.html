@@ -12,7 +12,8 @@
     }
     body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        /* background: linear-gradient(135deg, #667eea, #764ba2); */
+        background-color: #F4F6F9;
         min-height: 100vh;
         padding: 50px 20px;
       }
@@ -25,7 +26,9 @@
       justify-content: center;
       gap: 20px;
       background-color: white;
-      border-radius: 8px;
+      border-radius: 16px;
+      flex-wrap: wrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       
       input{
         width: 70%;
@@ -42,11 +45,11 @@
         box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
       }
       button {
-        width: 30%;
-        padding: 12px 25px;
+        width: 25%;
+        padding: 12px 20px;
         border: none;
         border-radius: 8px;
-        background: #667eea;
+        background: #2563eb;
         color: white;
         font-size: 15px;
         font-weight: bold;
@@ -59,7 +62,7 @@
         transform: translateY(-2px);
       }
       h1{
-        color: #667eea;
+        color: #2563eb;
       }
     }
     .container{
@@ -75,7 +78,8 @@
         padding: 15px;
         background-color: white;
         width: 50%;
-        border-radius: 8px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       }
       p{
         color: grey;
@@ -93,7 +97,7 @@
       }
 
       #root th {
-        background: #667eea;
+        background: #2563eb;
         color: white;
         padding: 14px;
         font-size: 16px;
@@ -117,6 +121,25 @@
 
       #root tr:last-child td {
         border-bottom: none;
+      }
+      #msg{
+        padding: 30px;
+        p{
+          color: grey;
+        }
+      }
+      .dlt{
+        font-size: 14px !important;
+        
+        width: auto !important;
+        padding: 8px 14px !important;
+        background-color: #fee2e2 !important;
+        color: #dc2626 !important;
+       
+        
+      }
+      .dlt:hover{
+        background-color: #fecaca;
       }
   </style>
 
@@ -158,6 +181,9 @@
 
             </tbody>
         </table>
+        <div id="msg">
+          <p>No items added</p>
+        </div>
     </div>
     <script>
         const data=[];
@@ -165,6 +191,7 @@
         const countitem=document.getElementById("count");
         const countTotal=document.getElementById("total");
         const bodyelement=document.getElementById("expenseBody");
+        const message=document.getElementById("msg");
         const add=()=>{
           let itemName=document.getElementById("item").value.trim();
             if(itemName === ""){
@@ -177,13 +204,45 @@
             }
             let priceitem=Number(itemPrice);
             if(itemPrice==="" || priceitem<0){
-              return;
+              alert("invalid value");
+              return false;
             }
             data.push({itemName:itemName.toUpperCase(),
                 priceitem:priceitem
             });
-            itemName="";
+            renderTable();
+           document.getElementById("item").value="";
         }
+        function calculateTotal(){
+              return data.reduce((t,value)=>{
+                  return (t+value.priceitem);
+              },0);
+        }
+        function dlt(index){
+            data.splice(index,1);
+            renderTable();
+        }
+        let renderTable=()=>{
+          bodyelement.innerHTML="";
+          if(data.length===0){
+            message.style.display="block";
+          }else{
+            message.style.display="none";
+            data.forEach((value,index)=>{
+              let row=document.createElement("tr");
+              row.innerHTML=`<td>${index+1}</td><td>${value.itemName}</td><td>${value.priceitem}</td><td><button class="dlt" onclick="dlt(${index})">Delete</button></td>`;
+              bodyelement.appendChild(row);
+             
+            
+            })
+           
+            
+          }
+          let price=calculateTotal();
+          countTotal.innerHTML=price;
+          countitem.innerHTML=data.length;
+        }
+
 
     </script>
 </body>

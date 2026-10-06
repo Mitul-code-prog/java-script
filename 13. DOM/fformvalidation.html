@@ -12,22 +12,63 @@
             <p>
                 <label for="name">Name:-</label>
                 <input type="text" id="name">
-                <span id="errorname"></span>
+                <span class="errorname"></span>
             </p>
             <p>
-                <input type="submit" value="Submit" onclick="msubmit()">
+                <label for="email">Email:-</label>
+                <input type="text" id="email">
+                <span class="errorname"></span>
+            </p>
+            <p>
+                <label for="Password">Password:-</label>
+                <input type="password" id="pass">
+                <span class="errorname"></span>
+            </p>
+            <p>
+                <input type="button" value="Submit" onclick="msubmit()">
             </p>
         </form>
     </div>
     <script>
-          let sname=document.getElementById("name").value;
+          
         let msubmit=()=>{
-           let Errorname=document.getElementById("errorname");
-            if(sname===""){
-               
-                Errorname.innerText="Name is Required";
-                // Errorname.style.color="red";
+            const sname=document.getElementById("name").value;
+            const smail=document.getElementById("email").value;
+            const spassword=document.getElementById("pass").value;
+            let errorname=document.querySelectorAll(".errorname");
+            let isvalid=true;
+            for(let i of errorname){
+                i.innerHTML=""
             }
+            if(sname===""){
+                errorname[0].innerHTML="Name is required";
+                errorname[0].style.color="red";
+                isvalid=false;
+            }
+            if(smail===""){
+                errorname[1].innerHTML="Email is required";
+                errorname[1].style.color="red";
+                isvalid=false;
+            }
+            if(spassword===""){
+                errorname[2].innerHTML="Password is required";
+                errorname[2].style.color="red";
+                isvalid=false;
+            }
+            if(isvalid){
+                const regex1 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                const regex2 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if(!regex1.test(smail)){
+                    alert("invalid email");
+                }
+                if(!regex2.test(spassword)){
+                    alert("Buit strong password");
+                }else{
+                    alert("form submitted");
+                }
+            }
+            
+            
         }
     </script>
 </body>

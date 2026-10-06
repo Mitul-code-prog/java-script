@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="products">
+
+    </div>
+    <br>
+    <br>
+    <div id="cart">
+
+    </div>
+    <script>
+        const pdata=[];
+        const cart=[];
+        const cartprint=document.getElementById("cart");
+        pdata.push({id:1,name:"maggie",price:10,qty:0},{id:2,name:"water",price:15,qty:0});
+        function renderproducts(){
+            let product=document.getElementById("products");
+            product.innerHTML="";
+            pdata.forEach((value,index)=>{
+                let row=document.createElement("div");
+                row.innerHTML=`<h2>Product name:-${value.name}</h2><p>Price:-${value.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${value.qty}</span><button onclick="cqty(${index},-1)">-</button><br><br><button onclick="addtocart(${index})">Add to cart</button>`;
+                product.appendChild(row);
+            });
+        }
+        function cqty(index,num){
+            pdata[index].qty+=num;
+            if((pdata[index].qty)<0){
+                return false
+            }
+            renderproducts();
+        }
+        
+        function renderCart(){
+            let total=0;
+            cartprint.innerHTML=""
+            cart.forEach((i)=>{
+                const cartdetails=document.createElement("div");
+        
+                cartdetails.innerHTML=`<h2>Product name:-${i.name}</h2><p>Price:-${i.price}</p><span>qty:-${i.qty}</span><h2 id="price">Final price is:-  ${i.qty*i.price}</h2>`
+                // finalprice(i.price,i.qty);
+                total+=i.qty*i.price;
+                cartprint.appendChild(cartdetails);
+                
+               
+
+            })
+            let h3=document.createElement("h2");
+            h3.innerText=`Total is:- ${total}`;
+            
+            cartprint.appendChild(h3);
+        }
+        function addtocart(index){
+            const product=pdata[index];
+            let qtytoadd=product.qty;
+            if(qtytoadd===0){
+                alert("add quantity")
+                return false;
+            }
+            let existing=cart.find((items)=>{
+               return items.id===product.id;
+            });
+            if(existing){
+                existing.qty+=qtytoadd;
+            }else{
+                cart.push({...product,qty:qtytoadd});
+            }
+            renderCart();
+            
+          
+            
+        }
+      
+        
+        renderproducts();
+    </script>
+        
+    
+</body>
+</html>
