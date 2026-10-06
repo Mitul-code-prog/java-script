@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <style>
+    *{
+      margin:0px;
+      padding:0px;
+      box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+        padding: 50px 20px;
+      }
+    .box{
+      width: 50%;
+      margin: 0 auto;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background-color: white;
+      border-radius: 8px;
+      
+      input{
+        width: 70%;
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        font-size: 15px;
+        transition: 0.3s;
+       
+      }
+      input:focus{
+        border-color: #667eea;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+      }
+      button {
+        width: 30%;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        background: #667eea;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #4f63c4;
+        transform: translateY(-2px);
+      }
+      h1{
+        color: #667eea;
+      }
+    }
+    .container{
+      width: 50%;
+      margin: 0 auto;
+      /* padding: 30px; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      border-radius: 8px;
+      .box-1{
+        padding: 15px;
+        background-color: white;
+        width: 50%;
+        border-radius: 8px;
+      }
+      p{
+        color: grey;
+      }
+      h2{
+        color: #667eea;
+        padding: 8px;
+      }
+    }
+    #root {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      #root th {
+        background: #667eea;
+        color: white;
+        padding: 14px;
+        font-size: 16px;
+      }
+
+      #root td {
+        padding: 13px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        color: #444;
+      }
+
+      #root tr:not(:first-child) {
+        transition: 0.2s;
+        cursor: pointer;
+      }
+
+      #root tr:not(:first-child):hover {
+        background: #f1f3ff;
+      }
+
+      #root tr:last-child td {
+        border-bottom: none;
+      }
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <h1>💰 Welcome To Expense Tracker</h1>
+    
+  </div>
+  <br>
+
+    <div class="box">
+        <input type="text" placeholder="Enter the item name" id="item">
+        <button onclick="add()">+ Add Expense</button>
+    </div>
+    <br>
+    <div class="container">
+          <div class="box-1">
+            <p>No of items...</p>
+            <h2 id="count">0</h2>
+          </div>
+          <div class="box-1">
+            <p>Bill Amount</p>
+            <h2 id="total">$0</h2>
+          </div>
+    </div>
+    <br>
+    <div class="box">
+        <table id="root">
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="expenseBody">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const data=[];
+        
+        const countitem=document.getElementById("count");
+        const countTotal=document.getElementById("total");
+        const bodyelement=document.getElementById("expenseBody");
+        const add=()=>{
+          let itemName=document.getElementById("item").value.trim();
+            if(itemName === ""){
+                alert("Add the item Name first");
+                return false;
+            }
+            let itemPrice=prompt("Add item Price");
+            if(itemPrice==null){
+                return ;
+            }
+            let priceitem=Number(itemPrice);
+            if(itemPrice==="" || priceitem<0){
+              return;
+            }
+            data.push({itemName:itemName.toUpperCase(),
+                priceitem:priceitem
+            });
+            itemName="";
+        }
+
+    </script>
+</body>
+</html>
+
+
