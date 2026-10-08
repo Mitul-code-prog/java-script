@@ -223,18 +223,23 @@
             renderTable();
         }
         let renderTable=()=>{
-          bodyelement.innerHTML="";
+           bodyelement.innerHTML="";
+          let list="";
           if(data.length===0){
             message.style.display="block";
           }else{
             message.style.display="none";
             data.forEach((value,index)=>{
-              let row=document.createElement("tr");
-              row.innerHTML=`<td>${index+1}</td><td>${value.itemName}</td><td>${value.priceitem}</td><td><button class="dlt" onclick="dlt(${index})">Delete</button></td>`;
-              bodyelement.appendChild(row);
+              // let row=document.createElement("tr");
+              // row.innerHTML=`<td>${index+1}</td><td>${value.itemName}</td><td>${value.priceitem}</td><td><button class="dlt" onclick="dlt(${index})">Delete</button></td>`;
+              // bodyelement.appendChild(row);
+              list+=`<tr><td>${index+1}</td><td>${value.itemName}</td><td>${value.priceitem}</td><td><button onclick="dlt(${index})" class="dlt">Delete</button></td></tr>`;
+              
              
             
             })
+            bodyelement.innerHTML=list;
+            
            
             
           }

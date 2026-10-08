@@ -1,85 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <div id="products">
+  </head>
+  <body>
+    <div id="products"></div>
+    <br />
+    <button onclick="goTocart()">Cart</button>
+    <br />
 
-    </div>
-    <br>
-    <br>
-    <div id="cart">
-
-    </div>
     <script>
-        const pdata=[];
-        const cart=[];
-        const cartprint=document.getElementById("cart");
-        pdata.push({id:1,name:"maggie",price:10,qty:0},{id:2,name:"water",price:15,qty:0});
-        function renderproducts(){
-            let product=document.getElementById("products");
-            product.innerHTML="";
-            pdata.forEach((value,index)=>{
-                let row=document.createElement("div");
-                row.innerHTML=`<h2>Product name:-${value.name}</h2><p>Price:-${value.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${value.qty}</span><button onclick="cqty(${index},-1)">-</button><br><br><button onclick="addtocart(${index})">Add to cart</button>`;
-                product.appendChild(row);
-            });
+      const pdata = [];
+      const cart =  JSON.parse(localStorage.getItem("cartdata")) || [];
+      pdata.push(
+        { id: 1, name: "maggie", price: 10, qty: 0 },
+        { id: 2, name: "water", price: 15, qty: 0 },
+      );
+      function renderproducts() {
+        let product = document.getElementById("products");
+        product.innerHTML = "";
+        let productList = "";
+        pdata.forEach((value, index) => {
+          // let row=document.createElement("div");
+          // row.innerHTML=`<h2>Product name:-${value.name}</h2><p>Price:-${value.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${value.qty}</span><button onclick="cqty(${index},-1)">-</button><br><br><button onclick="addtocart(${index})">Add to cart</button>`;
+          productList += `<h2>Product name:-${value.name}</h2><p>Price:-${value.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${value.qty}</span><button onclick="cqty(${index},-1)">-</button><br><br><button onclick="addtocart(${index})">Add to cart</button>`;
+          // product.appendChild(row);
+        });
+        product.innerHTML = productList;
+      }
+      function cqty(index, num) {
+       
+        if (pdata[index].qty + num < 0) {
+          return false;
         }
-        function cqty(index,num){
-            pdata[index].qty+=num;
-            if((pdata[index].qty)<0){
-                return false
-            }
-            renderproducts();
-        }
-        
-        function renderCart(){
-            let total=0;
-            cartprint.innerHTML=""
-            cart.forEach((i)=>{
-                const cartdetails=document.createElement("div");
-        
-                cartdetails.innerHTML=`<h2>Product name:-${i.name}</h2><p>Price:-${i.price}</p><span>qty:-${i.qty}</span><h2 id="price">Final price is:-  ${i.qty*i.price}</h2>`
-                // finalprice(i.price,i.qty);
-                total+=i.qty*i.price;
-                cartprint.appendChild(cartdetails);
-                
-               
-
-            })
-            let h3=document.createElement("h2");
-            h3.innerText=`Total is:- ${total}`;
-            
-            cartprint.appendChild(h3);
-        }
-        function addtocart(index){
-            const product=pdata[index];
-            let qtytoadd=product.qty;
-            if(qtytoadd===0){
-                alert("add quantity")
-                return false;
-            }
-            let existing=cart.find((items)=>{
-               return items.id===product.id;
-            });
-            if(existing){
-                existing.qty+=qtytoadd;
-            }else{
-                cart.push({...product,qty:qtytoadd});
-            }
-            renderCart();
-            
-          
-            
-        }
-      
-        
+         pdata[index].qty += num;
         renderproducts();
+      }
+
+      function goTocart() {
+        localStorage.setItem("cartdata", JSON.stringify(cart));
+        window.location.href = "cart.html";
+      }
+
+      function addtocart(index) {
+        const product = pdata[index];
+        let qtytoadd = product.qty;
+        if (qtytoadd === 0) {
+          alert("add quantity");
+          return false;
+        }
+        let existing = cart.find((items) => {
+          return items.id === product.id;
+        });
+        if (existing) {
+          existing.qty += qtytoadd;
+        } else {
+          cart.push({ ...product, qty: qtytoadd });
+        }
+        localStorage.setItem("cartdata",JSON.stringify(cart));
+        product.qty=0;
+        alert(`${product.name} added !!`);
+        renderproducts();
+      }
+
+      renderproducts();
     </script>
-        
-    
-</body>
+  </body>
 </html>

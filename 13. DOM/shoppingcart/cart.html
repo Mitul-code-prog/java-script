@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="cart"></div>
+    <div id="display">Cart is empty</div>
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cartdata"));
+      const dmsg=document.getElementById("display");
+      const cartprint = document.getElementById("cart");
+      function cqty(index, num) {
+       
+        if (cart[index].qty + num < 0) return false;
+         cart[index].qty += num;
+         localStorage.setItem("cartdata",JSON.stringify(cart));
+        
+        renderCart();
+      }
+      function calculateTotal() {
+        return cart.reduce((total, v) => total + v.price * v.qty, 0);
+      }
+      function remove(index){
+        cart.splice(index,1);
+        localStorage.setItem("cartdata",JSON.stringify(cart));
+        renderCart();
+      }
+
+      function renderCart() {
+        // let total=0;
+        cartprint.innerHTML = "";
+       
+          // const cartdetails=document.createElement("div");
+          if(cart.length===0){
+            dmsg.style.display="block"
+          }else{
+              dmsg.style.display="none";
+                cartprint.innerHTML = cart
+            .map(
+              (i, index) =>
+                `<h2>Product name:-${i.name}</h2><p>Price:-${i.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${i.qty}</span><button onclick="cqty(${index},-1)">-</button><h2 id="price">Final price is:- ${i.qty * i.price}</h2><button onclick="remove(${index})">Delete</button>`,
+            )
+            .join("");
+             let h3 = document.createElement("h2");
+            h3.innerText = `Total is:- ${calculateTotal()}`;
+
+            cartprint.appendChild(h3);
+          }
+
+        
+          // finalprice(i.price,i.qty);
+          // total+=i.qty*i.price;
+
+          // cartprint.appendChild(cartdetails);
+     
+        // calculateTotal();
+
+       
+      }
+      renderCart();
+    </script>
+  </body>
+</html>

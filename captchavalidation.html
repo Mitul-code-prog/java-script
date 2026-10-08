@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Enter the below captcha" id="infield" />
+    <button onclick="add()">Submit</button>
+    <h2 id="show"></h2>
+    <script>
+      const display = document.getElementById("show");
+      const captchachar =
+        "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+
+      let  generatedcaptcha ="";
+      function generateCaptcha() {
+        let captcha = "";
+
+        for (let i = 0; i <= 5; i++) {
+          let no = Math.floor(Math.random() * 62);
+          captcha += captchachar[no];
+        }
+        return captcha;
+      }
+     
+
+      function print() {
+        generatedcaptcha = generateCaptcha();
+        display.innerHTML = generatedcaptcha;
+      }
+   
+
+      function add() {
+        let input = document.getElementById("infield").value;
+
+        // print(generateCaptcha)
+        if (input === generatedcaptcha) {
+          alert("added");
+        } else {
+          alert("wrong captcha");
+          print();
+          return false;
+        }
+        document.getElementById("infield").value=""
+
+       
+      }
+     print();
+    </script>
+  </body>
+</html>

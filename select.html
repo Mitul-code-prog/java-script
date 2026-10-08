@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="country" onchange="countrychange()"></select>
+    <select id="state"></select>
+    <script>
+        const masterData = [
+    {
+        id: 1,
+        name: "India",
+        state: [
+            { id: 101, name: "Gujarat" },
+            { id: 102, name: "Maharashtra" },
+            { id: 103, name: "Rajasthan" },
+            { id: 104, name: "Karnataka" },
+            { id: 105, name: "Tamil Nadu" }
+        ]
+    },
+    {
+        id: 2,
+        name: "United States",
+        state: [
+            { id: 201, name: "California" },
+            { id: 202, name: "Texas" },
+            { id: 203, name: "Florida" },
+            { id: 204, name: "New York" },
+            { id: 205, name: "Illinois" }
+        ]
+    },
+    {
+        id: 3,
+        name: "Canada",
+        state: [
+            { id: 301, name: "Ontario" },
+            { id: 302, name: "Quebec" },
+            { id: 303, name: "British Columbia" },
+            { id: 304, name: "Alberta" },
+            { id: 305, name: "Manitoba" }
+        ]
+    },
+    {
+        id: 4,
+        name: "Australia",
+        state: [
+            { id: 401, name: "New South Wales" },
+            { id: 402, name: "Victoria" },
+            { id: 403, name: "Queensland" },
+            { id: 404, name: "Western Australia" },
+            { id: 405, name: "South Australia" }
+        ]
+    },
+    {
+        id: 5,
+        name: "Germany",
+        state: [
+            { id: 501, name: "Bavaria" },
+            { id: 502, name: "Berlin" },
+            { id: 503, name: "Hesse" },
+            { id: 504, name: "Saxony" },
+            { id: 505, name: "Hamburg" }
+        ]
+    }
+]
+        const countrydata=document.getElementById("country");
+        const statedata=document.getElementById("state");
+        function countryrender(){
+            let countryappend=`<option>-----select-----</option>`;
+            masterData.forEach((items)=>{
+                countryappend+=`<option value="${items.name}">${items.name}</option>`;
+            });
+            countrydata.innerHTML=countryappend;
+
+
+        }
+        function countrychange(){ 
+            let stateappend=`<option>-----select state-----</option>`  ;
+            let id=document.getElementById("country").value;
+            masterData.filter((item)=>{
+                if(id==item.name){
+                    item.state.filter((st)=>{
+                    stateappend+=`<option>${st.name}</option>`
+                    
+                })
+                }
+            })
+            statedata.innerHTML=stateappend;
+        }
+        countryrender();
+
+    </script>
+</body>
+</html>
