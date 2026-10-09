@@ -1,71 +1,316 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="products"></div>
-    <br />
-    <button onclick="goTocart()">Cart</button>
-    <br />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .navbar {
+            background: #1e293b;
+            color: white;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            font-size: 25px;
+        }
+
+        .navbar span {
+            color: #38bdf8;
+        }
+
+        .cart-btn {
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cart-btn:hover {
+            background: #0ea5e9;
+            color: white;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            margin-bottom: 28px;
+        }
+
+        .heading h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .heading p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        #products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.06);
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+        }
+
+        .product-icon {
+            height: 145px;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+            margin-bottom: 22px;
+        }
+
+        .product-card h2 {
+            font-size: 22px;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0284c7;
+            margin-bottom: 22px;
+        }
+
+        .quantity-label {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 9px;
+            padding: 7px;
+            margin-bottom: 20px;
+        }
+
+        .quantity-control button {
+            width: 38px;
+            height: 36px;
+            border: none;
+            background: #e2e8f0;
+            color: #1e293b;
+            font-size: 22px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .quantity-control button:hover {
+            background: #cbd5e1;
+        }
+
+        .quantity-control span {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            width: 100%;
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #334155;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 18px;
+            }
+
+            .navbar h1 {
+                font-size: 21px;
+            }
+
+            .cart-btn {
+                padding: 10px 15px;
+            }
+
+            .container {
+                margin: 30px auto;
+            }
+
+            .heading h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <h1>Mini<span>Shop.</span></h1>
+        <button class="cart-btn" onclick="goTocart()">
+            🛒 Go to Cart
+        </button>
+    </header>
+
+    <main class="container">
+        <div class="heading">
+            <h2>Our Products</h2>
+            <p>Choose your products and add them to your cart.</p>
+        </div>
+
+        <div id="products"></div>
+    </main>
+
+    <footer class="footer">
+        MiniShop &copy; 2026. All rights reserved.
+    </footer>
 
     <script>
-      const pdata = [];
-      const cart =  JSON.parse(localStorage.getItem("cartdata")) || [];
-      pdata.push(
-        { id: 1, name: "maggie", price: 10, qty: 0 },
-        { id: 2, name: "water", price: 15, qty: 0 },
-      );
-      function renderproducts() {
-        let product = document.getElementById("products");
-        product.innerHTML = "";
-        let productList = "";
-        pdata.forEach((value, index) => {
-          // let row=document.createElement("div");
-          // row.innerHTML=`<h2>Product name:-${value.name}</h2><p>Price:-${value.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${value.qty}</span><button onclick="cqty(${index},-1)">-</button><br><br><button onclick="addtocart(${index})">Add to cart</button>`;
-          productList += `<h2>Product name:-${value.name}</h2><p>Price:-${value.price}</p><button onclick="cqty(${index},1)">+</button><span>qty:-${value.qty}</span><button onclick="cqty(${index},-1)">-</button><br><br><button onclick="addtocart(${index})">Add to cart</button>`;
-          // product.appendChild(row);
-        });
-        product.innerHTML = productList;
-      }
-      function cqty(index, num) {
-       
-        if (pdata[index].qty + num < 0) {
-          return false;
+        const pdata = [];
+        const cart = JSON.parse(localStorage.getItem("cartdata")) || [];
+
+        pdata.push(
+            { id: 1, name: "maggie", price: 10, qty: 0 },
+            { id: 2, name: "water", price: 15, qty: 0 }
+        );
+
+        function renderproducts() {
+            let product = document.getElementById("products");
+            product.innerHTML = "";
+            let productList = "";
+
+            pdata.forEach((value, index) => {
+                const productIcon = value.name === "maggie" ? "🍜" : "💧";
+
+                productList += `
+                    <div class="product-card">
+                        <div class="product-icon">${productIcon}</div>
+
+                        <h2>${value.name}</h2>
+
+                        <p class="price">₹${value.price}</p>
+
+                        <p class="quantity-label">Select Quantity</p>
+
+                        <div class="quantity-control">
+                            <button onclick="cqty(${index}, -1)">−</button>
+                            <span>Qty: ${value.qty}</span>
+                            <button onclick="cqty(${index}, 1)">+</button>
+                        </div>
+
+                        <button class="add-btn" onclick="addtocart(${index})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+            });
+
+            product.innerHTML = productList;
         }
-         pdata[index].qty += num;
+
+        function cqty(index, num) {
+            if (pdata[index].qty + num < 0) {
+                return false;
+            }
+
+            pdata[index].qty += num;
+            renderproducts();
+        }
+
+        function goTocart() {
+            localStorage.setItem("cartdata", JSON.stringify(cart));
+            window.location.href = "cart.html";
+        }
+
+        function addtocart(index) {
+            const product = pdata[index];
+            let qtytoadd = product.qty;
+
+            if (qtytoadd === 0) {
+                alert("add quantity");
+                return false;
+            }
+
+            let existing = cart.find((items) => {
+                return items.id === product.id;
+            });
+
+            if (existing) {
+                existing.qty += qtytoadd;
+            } else {
+                cart.push({ ...product, qty: qtytoadd });
+            }
+
+            localStorage.setItem("cartdata", JSON.stringify(cart));
+            product.qty = 0;
+
+            alert(`${product.name} added !!`);
+            renderproducts();
+        }
+
         renderproducts();
-      }
-
-      function goTocart() {
-        localStorage.setItem("cartdata", JSON.stringify(cart));
-        window.location.href = "cart.html";
-      }
-
-      function addtocart(index) {
-        const product = pdata[index];
-        let qtytoadd = product.qty;
-        if (qtytoadd === 0) {
-          alert("add quantity");
-          return false;
-        }
-        let existing = cart.find((items) => {
-          return items.id === product.id;
-        });
-        if (existing) {
-          existing.qty += qtytoadd;
-        } else {
-          cart.push({ ...product, qty: qtytoadd });
-        }
-        localStorage.setItem("cartdata",JSON.stringify(cart));
-        product.qty=0;
-        alert(`${product.name} added !!`);
-        renderproducts();
-      }
-
-      renderproducts();
     </script>
-  </body>
+
+</body>
 </html>
