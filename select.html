@@ -7,67 +7,319 @@
 </head>
 <body>
     <select id="country" onchange="countrychange()"></select>
-    <select id="state"></select>
+    <select id="state" onchange="statechange()"></select>
+    <select id="city"></select>
     <script>
-        const masterData = [
+  const masterData = [
     {
         id: 1,
         name: "India",
         state: [
-            { id: 101, name: "Gujarat" },
-            { id: 102, name: "Maharashtra" },
-            { id: 103, name: "Rajasthan" },
-            { id: 104, name: "Karnataka" },
-            { id: 105, name: "Tamil Nadu" }
+            {
+                id: 101,
+                name: "Gujarat",
+                city: [
+                    { id: 1011, name: "Ahmedabad" },
+                    { id: 1012, name: "Surat" },
+                    { id: 1013, name: "Vadodara" },
+                    { id: 1014, name: "Rajkot" },
+                    { id: 1015, name: "Gandhinagar" }
+                ]
+            },
+            {
+                id: 102,
+                name: "Maharashtra",
+                city: [
+                    { id: 1021, name: "Mumbai" },
+                    { id: 1022, name: "Pune" },
+                    { id: 1023, name: "Nagpur" },
+                    { id: 1024, name: "Nashik" },
+                    { id: 1025, name: "Thane" }
+                ]
+            },
+            {
+                id: 103,
+                name: "Rajasthan",
+                city: [
+                    { id: 1031, name: "Jaipur" },
+                    { id: 1032, name: "Jodhpur" },
+                    { id: 1033, name: "Udaipur" },
+                    { id: 1034, name: "Kota" },
+                    { id: 1035, name: "Ajmer" }
+                ]
+            },
+            {
+                id: 104,
+                name: "Karnataka",
+                city: [
+                    { id: 1041, name: "Bengaluru" },
+                    { id: 1042, name: "Mysuru" },
+                    { id: 1043, name: "Mangaluru" },
+                    { id: 1044, name: "Hubballi" },
+                    { id: 1045, name: "Belagavi" }
+                ]
+            },
+            {
+                id: 105,
+                name: "Tamil Nadu",
+                city: [
+                    { id: 1051, name: "Chennai" },
+                    { id: 1052, name: "Coimbatore" },
+                    { id: 1053, name: "Madurai" },
+                    { id: 1054, name: "Tiruchirappalli" },
+                    { id: 1055, name: "Salem" }
+                ]
+            }
         ]
     },
     {
         id: 2,
         name: "United States",
         state: [
-            { id: 201, name: "California" },
-            { id: 202, name: "Texas" },
-            { id: 203, name: "Florida" },
-            { id: 204, name: "New York" },
-            { id: 205, name: "Illinois" }
+            {
+                id: 201,
+                name: "California",
+                city: [
+                    { id: 2011, name: "Los Angeles" },
+                    { id: 2012, name: "San Diego" },
+                    { id: 2013, name: "San Jose" },
+                    { id: 2014, name: "San Francisco" },
+                    { id: 2015, name: "Sacramento" }
+                ]
+            },
+            {
+                id: 202,
+                name: "Texas",
+                city: [
+                    { id: 2021, name: "Houston" },
+                    { id: 2022, name: "Dallas" },
+                    { id: 2023, name: "Austin" },
+                    { id: 2024, name: "San Antonio" },
+                    { id: 2025, name: "Fort Worth" }
+                ]
+            },
+            {
+                id: 203,
+                name: "Florida",
+                city: [
+                    { id: 2031, name: "Miami" },
+                    { id: 2032, name: "Orlando" },
+                    { id: 2033, name: "Tampa" },
+                    { id: 2034, name: "Jacksonville" },
+                    { id: 2035, name: "Tallahassee" }
+                ]
+            },
+            {
+                id: 204,
+                name: "New York",
+                city: [
+                    { id: 2041, name: "New York City" },
+                    { id: 2042, name: "Buffalo" },
+                    { id: 2043, name: "Rochester" },
+                    { id: 2044, name: "Albany" },
+                    { id: 2045, name: "Syracuse" }
+                ]
+            },
+            {
+                id: 205,
+                name: "Illinois",
+                city: [
+                    { id: 2051, name: "Chicago" },
+                    { id: 2052, name: "Aurora" },
+                    { id: 2053, name: "Naperville" },
+                    { id: 2054, name: "Rockford" },
+                    { id: 2055, name: "Springfield" }
+                ]
+            }
         ]
     },
     {
         id: 3,
         name: "Canada",
         state: [
-            { id: 301, name: "Ontario" },
-            { id: 302, name: "Quebec" },
-            { id: 303, name: "British Columbia" },
-            { id: 304, name: "Alberta" },
-            { id: 305, name: "Manitoba" }
+            {
+                id: 301,
+                name: "Ontario",
+                city: [
+                    { id: 3011, name: "Toronto" },
+                    { id: 3012, name: "Ottawa" },
+                    { id: 3013, name: "Mississauga" },
+                    { id: 3014, name: "Hamilton" },
+                    { id: 3015, name: "London" }
+                ]
+            },
+            {
+                id: 302,
+                name: "Quebec",
+                city: [
+                    { id: 3021, name: "Montreal" },
+                    { id: 3022, name: "Quebec City" },
+                    { id: 3023, name: "Laval" },
+                    { id: 3024, name: "Gatineau" },
+                    { id: 3025, name: "Longueuil" }
+                ]
+            },
+            {
+                id: 303,
+                name: "British Columbia",
+                city: [
+                    { id: 3031, name: "Vancouver" },
+                    { id: 3032, name: "Victoria" },
+                    { id: 3033, name: "Kelowna" },
+                    { id: 3034, name: "Surrey" },
+                    { id: 3035, name: "Burnaby" }
+                ]
+            },
+            {
+                id: 304,
+                name: "Alberta",
+                city: [
+                    { id: 3041, name: "Calgary" },
+                    { id: 3042, name: "Edmonton" },
+                    { id: 3043, name: "Red Deer" },
+                    { id: 3044, name: "Lethbridge" },
+                    { id: 3045, name: "Medicine Hat" }
+                ]
+            },
+            {
+                id: 305,
+                name: "Manitoba",
+                city: [
+                    { id: 3051, name: "Winnipeg" },
+                    { id: 3052, name: "Brandon" },
+                    { id: 3053, name: "Steinbach" },
+                    { id: 3054, name: "Thompson" },
+                    { id: 3055, name: "Portage la Prairie" }
+                ]
+            }
         ]
     },
     {
         id: 4,
         name: "Australia",
         state: [
-            { id: 401, name: "New South Wales" },
-            { id: 402, name: "Victoria" },
-            { id: 403, name: "Queensland" },
-            { id: 404, name: "Western Australia" },
-            { id: 405, name: "South Australia" }
+            {
+                id: 401,
+                name: "New South Wales",
+                city: [
+                    { id: 4011, name: "Sydney" },
+                    { id: 4012, name: "Newcastle" },
+                    { id: 4013, name: "Wollongong" },
+                    { id: 4014, name: "Wagga Wagga" },
+                    { id: 4015, name: "Dubbo" }
+                ]
+            },
+            {
+                id: 402,
+                name: "Victoria",
+                city: [
+                    { id: 4021, name: "Melbourne" },
+                    { id: 4022, name: "Geelong" },
+                    { id: 4023, name: "Ballarat" },
+                    { id: 4024, name: "Bendigo" },
+                    { id: 4025, name: "Shepparton" }
+                ]
+            },
+            {
+                id: 403,
+                name: "Queensland",
+                city: [
+                    { id: 4031, name: "Brisbane" },
+                    { id: 4032, name: "Gold Coast" },
+                    { id: 4033, name: "Townsville" },
+                    { id: 4034, name: "Cairns" },
+                    { id: 4035, name: "Toowoomba" }
+                ]
+            },
+            {
+                id: 404,
+                name: "Western Australia",
+                city: [
+                    { id: 4041, name: "Perth" },
+                    { id: 4042, name: "Bunbury" },
+                    { id: 4043, name: "Geraldton" },
+                    { id: 4044, name: "Albany" },
+                    { id: 4045, name: "Kalgoorlie" }
+                ]
+            },
+            {
+                id: 405,
+                name: "South Australia",
+                city: [
+                    { id: 4051, name: "Adelaide" },
+                    { id: 4052, name: "Mount Gambier" },
+                    { id: 4053, name: "Whyalla" },
+                    { id: 4054, name: "Murray Bridge" },
+                    { id: 4055, name: "Port Augusta" }
+                ]
+            }
         ]
     },
     {
         id: 5,
         name: "Germany",
         state: [
-            { id: 501, name: "Bavaria" },
-            { id: 502, name: "Berlin" },
-            { id: 503, name: "Hesse" },
-            { id: 504, name: "Saxony" },
-            { id: 505, name: "Hamburg" }
+            {
+                id: 501,
+                name: "Bavaria",
+                city: [
+                    { id: 5011, name: "Munich" },
+                    { id: 5012, name: "Nuremberg" },
+                    { id: 5013, name: "Augsburg" },
+                    { id: 5014, name: "Regensburg" },
+                    { id: 5015, name: "Würzburg" }
+                ]
+            },
+            {
+                id: 502,
+                name: "Berlin",
+                city: [
+                    { id: 5021, name: "Mitte" },
+                    { id: 5022, name: "Kreuzberg" },
+                    { id: 5023, name: "Charlottenburg" },
+                    { id: 5024, name: "Neukölln" },
+                    { id: 5025, name: "Spandau" }
+                ]
+            },
+            {
+                id: 503,
+                name: "Hesse",
+                city: [
+                    { id: 5031, name: "Frankfurt" },
+                    { id: 5032, name: "Wiesbaden" },
+                    { id: 5033, name: "Kassel" },
+                    { id: 5034, name: "Darmstadt" },
+                    { id: 5035, name: "Offenbach" }
+                ]
+            },
+            {
+                id: 504,
+                name: "Saxony",
+                city: [
+                    { id: 5041, name: "Dresden" },
+                    { id: 5042, name: "Leipzig" },
+                    { id: 5043, name: "Chemnitz" },
+                    { id: 5044, name: "Zwickau" },
+                    { id: 5045, name: "Görlitz" }
+                ]
+            },
+            {
+                id: 505,
+                name: "Hamburg",
+                city: [
+                    { id: 5051, name: "Hamburg-Mitte" },
+                    { id: 5052, name: "Altona" },
+                    { id: 5053, name: "Eimsbüttel" },
+                    { id: 5054, name: "Wandsbek" },
+                    { id: 5055, name: "Harburg" }
+                ]
+            }
         ]
     }
-]
+];
         const countrydata=document.getElementById("country");
         const statedata=document.getElementById("state");
+        const citydata=document.getElementById("city");
         function countryrender(){
             let countryappend=`<option>-----select-----</option>`;
             masterData.forEach((items)=>{
@@ -83,12 +335,28 @@
             masterData.filter((item)=>{
                 if(id==item.name){
                     item.state.filter((st)=>{
-                    stateappend+=`<option>${st.name}</option>`
+                    stateappend+=`<option value="${st.name}">${st.name}</option>`
                     
                 })
                 }
             })
             statedata.innerHTML=stateappend;
+        }
+        function statechange(){
+            let id=document.getElementById("state").value;
+            let cityappend=`<option>-----select-----</option>`
+            masterData.filter((value,index)=>{
+                value.state.filter((item)=>{
+                    if(item.name==id){
+                        item.city.filter((cit)=>{
+                           cityappend+=`<option value="${cit.name}">${cit.name}</option>`
+                            
+                        })
+                    }
+                })
+            })
+            citydata.innerHTML=cityappend;
+
         }
         countryrender();
 
