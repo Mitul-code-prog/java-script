@@ -323,7 +323,7 @@
         function countryrender(){
             let countryappend=`<option>-----select-----</option>`;
             masterData.forEach((items)=>{
-                countryappend+=`<option value="${items.name}">${items.name}</option>`;
+                countryappend+=`<option value="${items.id}">${items.name}</option>`;
             });
             countrydata.innerHTML=countryappend;
 
@@ -332,30 +332,41 @@
         function countrychange(){ 
             let stateappend=`<option>-----select state-----</option>`  ;
             let id=document.getElementById("country").value;
+            id=Number(id);
             masterData.filter((item)=>{
-                if(id==item.name){
+                if(id==item.id){
                     item.state.filter((st)=>{
-                    stateappend+=`<option value="${st.name}">${st.name}</option>`
+                    stateappend+=`<option value="${st.id}">${st.name}</option>`
                     
                 })
                 }
             })
-            statedata.innerHTML=stateappend;
+            statedata.innerHTML=stateappend;i
         }
         function statechange(){
             let id=document.getElementById("state").value;
-            let cityappend=`<option>-----select-----</option>`
-            masterData.filter((value,index)=>{
-                value.state.filter((item)=>{
-                    if(item.name==id){
-                        item.city.filter((cit)=>{
-                           cityappend+=`<option value="${cit.name}">${cit.name}</option>`
+            let id1=document.getElementById("country").value;
+           
+            id=Number(id);
+            id1=Number(id1);
+            let cityappend=`<option>-----select-----</option>`;
+            let countrychange=masterData.find((item)=>{
+                return id1===item.id;
+            });
+            if(countrychange){
+                let statechange=countrychange.state.find((item)=>{
+                    return item.id===id;
+                });
+                if(statechange){
+                    statechange.city.forEach((i)=>{
+                            cityappend+=`<option value="${i.id}">${i.name}</option>`
                             
-                        })
-                    }
-                })
-            })
+                    })
+                }
+                
+            }
             citydata.innerHTML=cityappend;
+            
 
         }
         countryrender();
